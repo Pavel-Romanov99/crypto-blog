@@ -81,3 +81,7 @@ card h1 {
     border-radius: 0px 0px 30px 30px;
     margin-top: auto;
 }
+
+.coin{
+    width: 30%;
+}

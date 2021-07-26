@@ -21,16 +21,6 @@ const requestOptions = {
     gzip: true
 };
 
-rp(requestOptions).then(response => {
-    for (var i = 0; i < response.data.length; i++) {
-        console.log(response.data[i].name)
-    }
-}
-).catch((err) => {
-    console.log('API call error:', err.message);
-});
-//
-
 app.use(express.urlencoded({ extended: true }))
 
 
@@ -50,8 +40,20 @@ db.once('open', () => {
 const views = path.join(__dirname, '/views')
 
 //basic routes
-app.get('/', (req, res) => {
-    res.sendFile(`${views}/home.html`)
+app.get('/', async (req, res) => {
+
+    let coins = [];
+    await rp(requestOptions).then(response => {
+        for (var i = 0; i < response.data.length; i++) {
+            coins.push(response.data[i].symbol)
+            console.log(response.data[i].symbol)
+        }
+    }
+    ).catch((err) => {
+        console.log('API call error:', err.message);
+    });
+
+    res.render(`${views}/home.ejs`, { coins })
 })
 
 app.listen(3000, () => {

@@ -22,10 +22,10 @@
                         <h1>Bitcoin</h1>
                     </div>
                     <div class="details">
-                        <h2 class="asset-price" id="btcPrice"></h2>
+                        <h2 class="asset-price" id="price1"></h2>
                     </div>
                 </card>
-                <canvas id="btcChart"></canvas>
+                <canvas id="1"></canvas>
             </bitcoin>
 
             <cosmos style="width: 30%" class="cosmos">
@@ -36,10 +36,10 @@
                         <h1>Cosmos</h1>
                     </div>
                     <div class="details">
-                        <h2 class="asset-price" id="atomPrice"></h2>
+                        <h2 class="asset-price" id="price2"></h2>
                     </div>
                 </card>
-                <canvas id="cosmosChart"></canvas>
+                <canvas id="2"></canvas>
             </cosmos>
 
             <ethereum style="width: 30%" class="ethereum">
@@ -50,13 +50,21 @@
                         <h1>Ethereum</h1>
                     </div>
                     <div class="details">
-                        <h2 class="asset-price" id="ethPrice"></h2>
+                        <h2 class="asset-price" id="price3"></h2>
                     </div>
                 </card>
-                <canvas id="ethereumChart"></canvas>
+                <canvas id="3"></canvas>
             </ethereum>
         </cards>
     </container>
+
+    <ul>
+        <% for(var i=0; i < coins.length; i++){ %>
+            <li>
+                <%= coins[i] %>
+            </li>
+            <% } %>
+    </ul>
 </body>
 <script src="../public/js/index.js"></script>
 
