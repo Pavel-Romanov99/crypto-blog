@@ -4,6 +4,7 @@ const path = require('path')
 app.use('/public', express.static(path.join(__dirname, 'public')))
 const mongoose = require('mongoose')
 
+
 //getting the top 10 cryptos
 const rp = require('request-promise');
 const requestOptions = {
@@ -25,6 +26,8 @@ app.use(express.urlencoded({ extended: true }))
 
 
 //connect to the database and check for errors
+const Post = require('./models/postsModel')
+
 mongoose.connect('mongodb://localhost:27017/crypto', {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -46,7 +49,7 @@ app.get('/', async (req, res) => {
     await rp(requestOptions).then(response => {
         for (var i = 0; i < response.data.length; i++) {
             coins.push(response.data[i].symbol)
-            console.log(response.data[i].symbol)
+            // console.log(response.data[i].symbol)
         }
     }
     ).catch((err) => {
@@ -54,6 +57,22 @@ app.get('/', async (req, res) => {
     });
 
     res.render(`${views}/home.ejs`, { coins })
+})
+
+app.get('/posts', async (req, res) => {
+    const posts = await Post.find({})
+    res.render(`${views}/posts.ejs`, { posts })
+})
+
+app.get('/newpost', (req, res) => {
+    res.render(`${views}/newpost.ejs`)
+})
+
+app.post('/newpost', async (req, res) => {
+    const { name, description } = req.body;
+    const post = new Post({ name: name, description: description })
+    await post.save()
+    res.redirect(`/posts`)
 })
 
 app.listen(3000, () => {

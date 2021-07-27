@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>POSTS</h1>
+
+    <div class="container">
+        <div class="post-container">
+            <div class="post">
+                <h1>POST1</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates veniam doloremque autem,
+                    dolorem rem similique unde quam? Enim debitis nulla quod, dicta aut mollitia sunt aliquid ullam
+                    perferendis distinctio.</p>
+            </div>
+            <div class="post">
+                <h1>POST1</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates veniam doloremque autem,
+                    dolorem rem similique unde quam? Enim debitis nulla quod, dicta aut mollitia sunt aliquid ullam
+                    perferendis distinctio.</p>
+            </div>
+            <% for(var i=0; i < posts.length; i++) { %>
+                <div class="post">
+                    <h1>
+                        <%= posts[i].name %>
+                    </h1>
+                    <p>
+                        <%= posts[i].description %>
+                    </p>
+                </div>
+                <% } %>
+        </div>
+    </div>
+    <a href="/newpost">Create a post</a>
+
+</body>
+<script src="../public/js/posts.js"></script>
+
+</html>

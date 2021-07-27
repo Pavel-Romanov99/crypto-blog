@@ -14,7 +14,7 @@
     <h1>Welcome to the crypto blog</h1>
     <container class="container">
         <cards class="cards">
-            <bitcoin style="width: 30%" class="btc">
+            <coin style="width: 30%" class="coin-class">
                 <card class="asset-info">
                     <div class="title">
                         <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/btc.svg"
@@ -26,9 +26,9 @@
                     </div>
                 </card>
                 <canvas id="1"></canvas>
-            </bitcoin>
+            </coin>
 
-            <cosmos style="width: 30%" class="cosmos">
+            <coin style="width: 30%" class="coin-class">
                 <card class="asset-info">
                     <div class="title">
                         <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/atm.svg"
@@ -40,9 +40,9 @@
                     </div>
                 </card>
                 <canvas id="2"></canvas>
-            </cosmos>
+            </coin>
 
-            <ethereum style="width: 30%" class="ethereum">
+            <coin style="width: 30%" class="coin-class">
                 <card class="asset-info">
                     <div class="title">
                         <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg"
@@ -54,17 +54,10 @@
                     </div>
                 </card>
                 <canvas id="3"></canvas>
-            </ethereum>
+            </coin>
         </cards>
     </container>
 
-    <ul>
-        <% for(var i=0; i < coins.length; i++){ %>
-            <li>
-                <%= coins[i] %>
-            </li>
-            <% } %>
-    </ul>
 </body>
 <script src="../public/js/index.js"></script>
 

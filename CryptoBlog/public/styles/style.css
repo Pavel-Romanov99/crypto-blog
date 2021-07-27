@@ -1,3 +1,6 @@
+body{
+    background-color: #1C061A ;
+}
 
 h1 {
     font-size: 1.5em;
@@ -11,7 +14,7 @@ h1,
 h2, 
 p {
     font-family: 'Red Hat Text', sans-serif;
-    color: #303030;
+    color: white;
 }
 
 .container {
@@ -31,9 +34,7 @@ cards {
     padding-bottom: 30px;
 }
 
-.btc,
-.cosmos,
-.ethereum {
+.coin-class {
     display: grid;
     max-width: 300px;
     min-width: 250px;
@@ -45,16 +46,9 @@ cards {
     border-radius: 30px;
 }
 
-.btc {
-    box-shadow: 10px 10px 20px 1px rgba(247,147,26,.15);
-}
-
-.cosmos {
-    box-shadow: 10px 10px 20px 1px rgba(46,49,72,.15);
-}
-
-.ethereum {
-    box-shadow: 10px 10px 20px 1px rgba(78,56,216,.15);
+.coin-class {
+    box-shadow: 10px 10px 20px 1px rgba(255, 255, 255, 0.15);
+    border-color: white;
 }
 
 .asset-info {
@@ -73,10 +67,11 @@ card h1 {
     margin-left: 10px;
 }
 
+img{
+    width: 10%;
+}
 
-#btcChart,
-#cosmosChart,
-#ethereumChart {
+#chart {
     grid-area: chart;
     border-radius: 0px 0px 30px 30px;
     margin-top: auto;

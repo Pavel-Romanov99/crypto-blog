@@ -2,11 +2,12 @@ let ids = [1, 2, 3]
 let coins = ["BTC", "ATOM", "ETH"]
 let price = ["price1", "price2", "price3"]
 
+//create a card for a new coin
 addCard = function (coin, id1, price1) {
     const cards = document.getElementsByClassName('cards')[0]
 
     const coinContainer = document.createElement('coin');
-    coinContainer.classList.add(coin)
+    coinContainer.classList.add('coin-class')
 
     cards.appendChild(coinContainer)
 
@@ -31,13 +32,13 @@ addCard = function (coin, id1, price1) {
 
     const header2 = document.createElement('h2')
     header2.classList.add('asset-price')
-    header2.id = price
+    header2.id = price1
 
     div2.appendChild(header2)
 
     div1.appendChild(img)
     div1.appendChild(header)
-    div1.appendChild(div2)
+    card.appendChild(div2)
 
     const canvas = document.createElement('canvas')
     canvas.id = id1
@@ -156,15 +157,15 @@ async function printCoinChart(coin, id) {
 
 
 
-addCard('ADA', 4, 'price4')
-addCard('DOGE', 5, 'price5')
+addCard('ADA', '4', 'price4')
+addCard('DOGE', '5', 'price5')
 
 //update prices
-async function updateCoinPrice(coin, id) {
+async function updateCoinPrice(coin, price) {
     let { times, prices } = await coinData(coin)
     let currentPrice = prices[prices.length - 1].toFixed(2);
 
-    document.getElementById(id).innerHTML = "$" + currentPrice;
+    document.getElementById(price).innerHTML = "$" + currentPrice;
 }
 
 for (let i = 0; i < ids.length; i++) {
