@@ -1,9 +1,10 @@
 let ids = [1, 2, 3]
 let coins = ["BTC", "ATOM", "ETH"]
 let price = ["price1", "price2", "price3"]
+let fullnames = ['bitcoin', 'cosmos', 'ethereum']
 
 //create a card for a new coin
-addCard = function (coin, id1, price1) {
+addCard = function (coin, id1, price1, fullname) {
     const cards = document.getElementsByClassName('cards')[0]
 
     const coinContainer = document.createElement('coin');
@@ -22,7 +23,8 @@ addCard = function (coin, id1, price1) {
     card.appendChild(div1)
 
     const img = document.createElement('img')
-    img.src = `https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/${coin.toLowerCase()}.svg`
+    img.src = `https://cryptologos.cc/logos/${fullname}-${coin.toLowerCase()}-logo.svg?v=013`
+    console.log(img.src)
 
     const header = document.createElement('h1')
     header.innerHTML = coin;
@@ -48,6 +50,7 @@ addCard = function (coin, id1, price1) {
     ids.push(id1)
     coins.push(coin)
     price.push(price1)
+    fullnames.push(fullname)
 }
 
 
@@ -157,8 +160,9 @@ async function printCoinChart(coin, id) {
 
 
 
-addCard('ADA', '4', 'price4')
-addCard('DOGE', '5', 'price5')
+addCard('ADA', '4', 'price4', 'cardano')
+addCard('DOGE', '5', 'price5', 'dogecoin')
+addCard('XRP', '6', 'price6', 'xrp')
 
 //update prices
 async function updateCoinPrice(coin, price) {

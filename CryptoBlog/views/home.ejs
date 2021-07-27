@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('../layout/boilerplate.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../public/styles/style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-    <title>Crypto Blog</title>
-</head>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron-container">
+            <h1 class="display-4">CryptoBlog</h1>
+            <p>The leading crypto discussion site on the web.</p>
+        </div>
+    </div>
 
-<body>
-    <h1>Welcome to the crypto blog</h1>
     <container class="container">
         <cards class="cards">
-            <coin style="width: 30%" class="coin-class">
+            <coin class="coin-class">
                 <card class="asset-info">
                     <div class="title">
                         <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/btc.svg"
@@ -28,7 +23,7 @@
                 <canvas id="1"></canvas>
             </coin>
 
-            <coin style="width: 30%" class="coin-class">
+            <coin class="coin-class">
                 <card class="asset-info">
                     <div class="title">
                         <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/atm.svg"
@@ -42,7 +37,7 @@
                 <canvas id="2"></canvas>
             </coin>
 
-            <coin style="width: 30%" class="coin-class">
+            <coin class="coin-class">
                 <card class="asset-info">
                     <div class="title">
                         <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg"
@@ -57,8 +52,3 @@
             </coin>
         </cards>
     </container>
-
-</body>
-<script src="../public/js/index.js"></script>
-
-</html>

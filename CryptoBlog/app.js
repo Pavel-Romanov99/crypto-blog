@@ -4,6 +4,8 @@ const path = require('path')
 app.use('/public', express.static(path.join(__dirname, 'public')))
 const mongoose = require('mongoose')
 
+const ejsMate = require('ejs-mate')
+app.engine('ejs', ejsMate)
 
 //getting the top 10 cryptos
 const rp = require('request-promise');
