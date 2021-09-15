@@ -8,6 +8,10 @@ const postSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true
+    },
+    coin: {
+        type: String,
+        required: true
     }
 })
 

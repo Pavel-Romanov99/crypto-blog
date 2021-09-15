@@ -27,7 +27,10 @@ addCard = function (coin, id1, price1, fullname) {
     console.log(img.src)
 
     const header = document.createElement('h1')
-    header.innerHTML = coin;
+    const link = document.createElement('a')
+    link.innerHTML = coin;
+    link.href = `/posts/${fullname}`
+    header.appendChild(link)
 
     const div2 = document.createElement('div')
     div2.classList.add('details')

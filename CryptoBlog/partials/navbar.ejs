@@ -6,8 +6,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/posts">Posts</a>
-            <a class="nav-item nav-link" href="/newpost">Create Post</a>
         </div>
     </div>
+
+    <% if(id) { %>
+        <form action="/logout" method="POST">
+            <button id='logout-button' type='submit'>Log Out</button>
+        </form>
+        <% } %>
 </nav>

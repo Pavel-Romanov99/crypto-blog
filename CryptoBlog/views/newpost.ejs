@@ -2,13 +2,12 @@
 
     <div class="form-container">
         <h1>Create a new post</h1>
-        <form action="/newpost" method="POST" id="form">
+        <form action='/newpost/<%= coinName %>' method="POST" id="form">
             <div id="form-items">
-                <label for="name">Enter header</label>
-                <input type="text" placeholder="enter name" id="name" name="name">
-                <label for="description">Description</label>
-                <textarea id="description" name="description" rows="3"></textarea>
-                <button>Submit</button>
+                <h1>Give your feedback!</h1>
+                <input type="text" placeholder="Enter Name" id="name" name="name">
+                <textarea id="description" placeholder="Description" name="description" rows="3"></textarea>
+                <button id="submit" type="submit" class="btn btn-danger">Submit</button>
             </div>
         </form>
     </div>
