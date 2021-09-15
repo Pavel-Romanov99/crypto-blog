@@ -1,5 +1,5 @@
 body{
-    background-color: #1C061A;
+    background-color: #ffffff;
 }
 
 h1 {
@@ -23,7 +23,7 @@ p {
     align-items: center;
 }
 
-cards {
+.cards {
     width: 90%;
     display: inline-flex;
     flex-direction: row;
@@ -31,6 +31,11 @@ cards {
     flex-wrap: wrap;
     padding-top: 10px;
     padding-bottom: 30px;
+    color: black;
+}
+
+.asset-price{
+    color: #5469d4;
 }
 
 .coin-class {
@@ -83,7 +88,7 @@ img{
 }
 
 .jumbotron{
-    background-color:  #2a0a28;
+    background-color:  #5469d4;
 }
 
 .jumbotron-container{
@@ -125,7 +130,7 @@ img{
 }
 
 .post{
-    background-color:rgb(234,234,234);
+    background-color:#5469d4;
     width: 80%;
     height: 150px;
     padding: 1rem;
@@ -179,6 +184,19 @@ button a{
 }
 
 #logout-button{
-    width: 100px;
-    color: black;
+        width: 100px;
+        min-height: 30px;
+        border: none;
+        border-radius: 4px;
+        background-color: #5469d4;
+        color: white;
+        font-size: 16px;
+        margin: auto;
+}
+
+.nav-class{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
