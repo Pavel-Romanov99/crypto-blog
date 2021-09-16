@@ -4,6 +4,9 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 //in order to check if someone is logged in we use sessions
 const session = require('express-session')
+//we use flash for messages
+const flash = require('connect-flash')
+app.use(flash())
 
 app.use(session({ secret: 'notagoodsecret' }))
 
@@ -54,6 +57,12 @@ mongoose.connect('mongodb://localhost:27017/crypto', {
         console.log('error connecting to db', err)
     })
 
+//we create global variables as middleware for flash messages
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    next()
+})
 
 //a function to check if the user is logged in
 const loggedIn = (req, res, next) => {
@@ -86,10 +95,11 @@ app.get('/', loggedIn, async (req, res) => {
 //find all the post for the specific coin
 app.get('/posts/:coin', loggedIn, async (req, res) => {
     const id = req.session.user_id;
-
+    const username = req.session.username;
     const posts = await Post.find({ coin: req.params.coin })
     const coinName = req.params.coin;
-    res.render('posts', { posts, coinName, id })
+
+    res.render('posts', { posts, coinName, id, username })
 })
 
 //get request for a new post for the specific coin
@@ -123,28 +133,58 @@ app.post('/register', async (req, res) => {
     //we take the username and password from the form
     const { username, password } = req.body;
 
+    //error messages
+    var errors = []
+
     //we check for some invalid forms
     if (!username || !password) {
-        console.log('Cannot have empty fields')
+        errors.push({ msg: 'Please fill in all fields' })
     }
     if (password.length < 6) {
-        console.log('Password has to be longer than 6 characters')
+        errors.push({ msg: 'Password should be atleast 6 characters' })
     }
 
-    //we hash the password
-    await bcrypt.hash(password, 12, async (err, hash) => {
+    if (errors.length > 0) {
+        res.render('register', { errors, username, password })
+    }
+
+    //we check if there exists a user the same username
+    User.findOne({ username: username }, async (err, existingUser) => {
         if (err) {
-            console.log('Error hashing password!', err)
+            console.log('error checking if user exists', err)
         } else {
-            //if there is not error we create a new user the the hashed password
-            const user = new User({
-                username: username,
-                password: hash
-            })
-            await user.save()
+            //if there is an existing user we redirect
+            if (existingUser) {
+                errors.push({ msg: 'Username is already registered' })
+                if (errors.length > 0) {
+                    res.render('register', { errors, username, password })
+                }
+            }
+            else {
+                //we hash the password
+                await bcrypt.hash(password, 12, async (err, hash) => {
+                    if (err) {
+                        console.log('Error hashing password!', err)
+                    } else {
+                        //if there is not error we create a new user the the hashed password
+                        const user = new User({
+                            username: username,
+                            password: hash
+                        })
+                        await user.save()
+                            .then(() => {
+                                req.flash('success_msg', 'Successfully registered!')
+                                res.redirect('/login')
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
+
+                    }
+                })
+            }
         }
     })
-    res.redirect('/')
 })
 
 app.get('/login', (req, res) => {
@@ -190,6 +230,17 @@ app.post('/logout', (req, res) => {
     req.session.username = null;
 
     res.redirect('/login')
+})
+
+//delete a comment routes
+app.post('/delete', async (req, res) => {
+    await Post.findOneAndDelete({ name: req.session.username })
+        .then(() => {
+            res.redirect(req.get('referer'));
+        })
+        .catch((err) => {
+            console.log('error deleting comment', err)
+        })
 })
 
 app.listen(3000, () => {

@@ -3,7 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>Sign in</title>
-    <link rel="stylesheet" type="text/css" href="../public/styles/login.css">
+    <link rel="stylesheet" type="text/css" href="../public/styles/register.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -49,30 +52,31 @@
             </div>
             <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
                 <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-                    <h1><a href="http://blog.stackfindover.com/" rel="dofollow">CryptoBlog</a></h1>
+                    <h1><a href="" rel="dofollow">CryptoBlog</a></h1>
                 </div>
                 <div class="formbg-outer">
                     <div class="formbg">
                         <div class="formbg-inner padding-horizontal--48">
                             <span class="padding-bottom--15">Register to CrytoBlog</span>
-                            <form id="stripe-login" action="/register" method="POST">
-                                <div class="field padding-bottom--24">
-                                    <label for="username">Username</label>
-                                    <input type="text" name="username">
-                                </div>
-                                <div class="field padding-bottom--24">
-                                    <div class="grid--50-50">
-                                        <label for="password">Password</label>
-                                        <div class="reset-pass">
-                                            <a href="#">Forgot your password?</a>
-                                        </div>
+                            <%- include('../partials/err_msg.ejs') %>
+                                <form id="stripe-login" action="/register" method="POST">
+                                    <div class="field padding-bottom--24">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username">
                                     </div>
-                                    <input type="password" name="password">
-                                </div>
-                                <div class="field padding-bottom--24">
-                                    <button id="submit-button" type="submit">Register</button>
-                                </div>
-                            </form>
+                                    <div class="field padding-bottom--24">
+                                        <div class="grid--50-50">
+                                            <label for="password">Password</label>
+                                            <div class="reset-pass">
+                                                <a href="#">Forgot your password?</a>
+                                            </div>
+                                        </div>
+                                        <input type="password" name="password">
+                                    </div>
+                                    <div class="field padding-bottom--24">
+                                        <button id="submit-button" type="submit">Register</button>
+                                    </div>
+                                </form>
                         </div>
                     </div>
                     <div class="footer-link padding-top--24">
@@ -87,6 +91,16 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

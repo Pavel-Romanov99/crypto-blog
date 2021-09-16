@@ -132,7 +132,7 @@ img{
 .post{
     background-color:rgb(234,234,234);
     width: 80%;
-    height: 150px;
+    height: 180px;
     padding: 1rem;
     margin-top: 3%;
     border-radius: 8px;
@@ -194,7 +194,7 @@ button a{
     width: 50%;
 }
 
-#logout-button{
+.logout-button{
         width: 100px;
         min-height: 30px;
         border: none;
@@ -203,6 +203,7 @@ button a{
         color: white;
         font-size: 16px;
         margin: auto;
+        margin-left: 5px;
 }
 
 .nav-class{
@@ -210,4 +211,27 @@ button a{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.delete-button{
+    width: 100px;
+    min-height: 30px;
+    border: none;
+    border-radius: 4px;
+    background-color: #5469d4;
+    color: white;
+    font-size: 16px;
+    margin: auto;
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: column;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
 }

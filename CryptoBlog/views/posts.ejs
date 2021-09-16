@@ -27,9 +27,18 @@
                                 <h1>
                                     <%= posts[i].name %> commented:
                                 </h1>
-                                <p class="description">
-                                    <%= posts[i].description %>
-                                </p>
+                                <div class="buttons-container">
+                                    <p class="description">
+                                        <%= posts[i].description %>
+                                    </p>
+                                    <% if(username===posts[i].name) { %>
+                                        <div class="buttons">
+                                            <form class="logout-form" action="/delete" method="POST">
+                                                <button class='logout-button' type='submit'>Delete</button>
+                                            </form>
+                                        </div>
+                                        <% } %>
+                                </div>
                             </div>
                             <% } %>
                     </div>
