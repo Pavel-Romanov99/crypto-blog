@@ -197,12 +197,15 @@ app.post('/login', async (req, res) => {
     //we take the data from the from
     const { username, password } = req.body
 
+    var errors = []
+
     //we find a user from the database with the same username
     const user = await User.findOne({ username: username })
 
     //we check if the user exists
     if (!user) {
-        res.send('there is not user with that username')
+        errors.push({ msg: 'There is no user with that name' })
+        res.render('login', { errors })
     }
 
     //we compare the form password and db password
@@ -217,6 +220,7 @@ app.post('/login', async (req, res) => {
                 res.redirect('/')
             } else {
                 //if the passwords don't match
+                req.flash('error_msg', 'Incorrect password')
                 res.redirect('/login')
             }
         }
