@@ -47,13 +47,11 @@ p {
     grid-template: 
         "info"
         "chart";
-    border-radius: 5px;
-}
-
-.coin-class {
-    box-shadow: 10px 10px 20px 1px rgb(185, 158, 107);
+    border-radius: 8px;
+    box-shadow: 10px 10px 20px 1px #5469d4;
     border-color: white;
     margin-top: 5%;
+
 }
 
 .asset-info {

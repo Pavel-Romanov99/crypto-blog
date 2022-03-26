@@ -9,18 +9,37 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/styles/posts.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-    <title>Boilerplate</title>
+    <title>Post</title>
 </head>
 
 <body>
     <%- include('../partials/navbar.ejs') %>
 
+
         <main class="main-container">
 
 
+
             <div class="contents-container">
+
+
+
                 <div class="container">
+                                
+                    
                     <div class="post-container">
+
+                        <% if(posts.length === 0) { %>
+                            <h1 style="margin-top: 20% ;">There are currently no posts. Start the trend!</h1>
+                        <% } %>
+
+                        <form class="post-form" action='/newpost/<%= coinName %>' method="POST">
+                            <input type="text-field" name="description" id="description" placeholder="Leave a comment! " rows="10">
+
+                            <button type="sumbit" class="btn btn-dark" id="create-post">
+                                <a >Create a post</a>
+                            </button>
+                        </form>
 
                         <% for(var i=0; i < posts.length; i++) { %>
                             <div class="post">
@@ -41,10 +60,15 @@
                                 </div>
                             </div>
                             <% } %>
+
+
+
                     </div>
-                    <button type="button" class="btn btn-dark">
-                        <a style="color: white" href='/newpost/<%= coinName %>'>Create a post</a>
-                    </button>
+
+                    <cards class="cards">
+
+                    </cards>
+
                 </div>
 
             </div>
@@ -58,7 +82,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-        <script src="../public/js/index.js"></script>
+        <script type="module" src="../public/js/getCoin.js"></script>
 
 </body>
 

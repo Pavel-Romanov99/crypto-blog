@@ -1,5 +1,21 @@
 const express = require('express')
 const app = express()
+const rp = require('request-promise')
+
+const requestOptions = {
+    method: 'GET',
+    uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+    qs: {
+        'start': '1',
+        'limit': '10',
+        'convert': 'USD'
+    },
+    headers: {
+        'X-CMC_PRO_API_KEY': '7ac4f7f1-d9d9-4de8-85a4-03052b31cd85'
+    },
+    json: true,
+    gzip: true
+};
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 //in order to check if someone is logged in we use sessions
@@ -24,23 +40,6 @@ app.engine('ejs', ejsMate)
 
 //express can read post request data
 app.use(express.urlencoded({ extended: true }))
-
-//getting the top 10 cryptos
-const rp = require('request-promise');
-const requestOptions = {
-    method: 'GET',
-    uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-    qs: {
-        'start': '1',
-        'limit': '10',
-        'convert': 'USD'
-    },
-    headers: {
-        'X-CMC_PRO_API_KEY': '7ac4f7f1-d9d9-4de8-85a4-03052b31cd85'
-    },
-    json: true,
-    gzip: true
-};
 
 //connect to the database and check for errors
 const Post = require('./models/postsModel')

@@ -1,10 +1,8 @@
-let ids = [1, 2, 3]
-let coins = ["BTC", "ATOM", "ETH"]
-let price = ["price1", "price2", "price3"]
-let fullnames = ['bitcoin', 'cosmos', 'ethereum']
+let coins = []
+let fullnames = []
 
 //create a card for a new coin
-addCard = function (coin, id1, price1, fullname) {
+export let addCard = function (coin, fullname) {
     const cards = document.getElementsByClassName('cards')[0]
 
     const coinContainer = document.createElement('coin');
@@ -24,12 +22,11 @@ addCard = function (coin, id1, price1, fullname) {
 
     const img = document.createElement('img')
     img.src = `https://cryptologos.cc/logos/${fullname}-${coin.toLowerCase()}-logo.svg?v=013`
-    console.log(img.src)
 
     const header = document.createElement('h1')
     const link = document.createElement('a')
     link.innerHTML = coin;
-    link.href = `/posts/${fullname}`
+    link.href = `/posts/${coin}-${fullname}`
     header.appendChild(link)
 
     const div2 = document.createElement('div')
@@ -37,7 +34,7 @@ addCard = function (coin, id1, price1, fullname) {
 
     const header2 = document.createElement('h2')
     header2.classList.add('asset-price')
-    header2.id = price1
+    header2.id = coin + "price";
 
     div2.appendChild(header2)
 
@@ -46,13 +43,11 @@ addCard = function (coin, id1, price1, fullname) {
     card.appendChild(div2)
 
     const canvas = document.createElement('canvas')
-    canvas.id = id1
+    canvas.id = coin + "canvas";
 
     coinContainer.appendChild(canvas)
 
-    ids.push(id1)
     coins.push(coin)
-    price.push(price1)
     fullnames.push(fullname)
 }
 
@@ -80,10 +75,11 @@ function checkStatus(response) {
     }
 }
 
-async function printCoinChart(coin, id) {
+export async function printCoinChart(coin) {
     let { times, prices } = await coinData(coin)
 
-    let chart = document.getElementById(id).getContext('2d');
+    let canvasId = coin + "canvas"
+    let chart = document.getElementById(canvasId).getContext('2d');
 
     let gradient = chart.createLinearGradient(0, 0, 0, 400);
 
@@ -161,24 +157,37 @@ async function printCoinChart(coin, id) {
     });
 }
 
-
-
-addCard('ADA', '4', 'price4', 'cardano')
-addCard('DOGE', '5', 'price5', 'dogecoin')
-addCard('XRP', '6', 'price6', 'xrp')
-
 //update prices
-async function updateCoinPrice(coin, price) {
+export async function updateCoinPrice(coin) {
+
+    let priceId = coin + "price";
+    console.log(priceId);
     let { times, prices } = await coinData(coin)
     let currentPrice = prices[prices.length - 1].toFixed(2);
 
-    document.getElementById(price).innerHTML = "$" + currentPrice;
+    document.getElementById(priceId).innerHTML = "$" + currentPrice;
 }
 
-for (let i = 0; i < ids.length; i++) {
-    updateCoinPrice(coins[i], price[i])
-    printCoinChart(coins[i], ids[i])
+export function getCoins(){        
+    addCard('ADA','cardano')
+    addCard('DOGE','dogecoin')
+    addCard('XRP', 'xrp')
+    addCard('BTC', 'bitcoin')
+    addCard('ATOM', 'cosmos')
+    addCard('ETH', 'ethereum')
+
+    for (let i = 0; i < coins.length; i++) {
+        updateCoinPrice(coins[i])
+        printCoinChart(coins[i])
+    }
 }
+
+function getCoinData(coin){
+    addCard(coin, null);
+    updateCoinPrice(coin)
+    printCoinChart(coin)
+}
+
 
 
 
