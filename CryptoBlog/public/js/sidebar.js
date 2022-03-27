@@ -10,14 +10,15 @@
 const url = document.URL;
 const path = url.split('3000')[1];
 
-const links = document.getElementsByTagName('a');
+const links = document.querySelectorAll('#sidebar a');
 
 function setActiveTag(links){
-  console.log("working")
   for(var i = 0; i < links.length; i++){
     if(links[i].getAttribute('href') === path){
       links[i].classList.add('active')
-      console.log(links[i].innerHTML);
+      const img = document.createElement('img')
+      img.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Gold_Bitcoin.svg/2048px-Gold_Bitcoin.svg.png');
+      links[i].appendChild(img)
     }
   }
 }

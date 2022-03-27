@@ -21,9 +21,6 @@
     <div class="all-content">
         <%- include('../partials/sidebar.ejs') %>
 
-
-
-
         <main class="main-container">
             <div class="contents-container">
                 <div class="container">
@@ -140,14 +137,14 @@
 
                     <div class="right-container">
                         <cards class="cards">
-
+                            <button type="button" class="btn btn-primary" id="modal-button" data-toggle="modal" data-target="#exampleModalCenter">
+                                Make a Comment
+                            </button>
                         </cards>
                         <% if(id) { %>
     
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" id="modal-button" data-toggle="modal" data-target="#exampleModalCenter">
-                                Make a Comment
-                            </button>
+
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
