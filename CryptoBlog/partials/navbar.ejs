@@ -15,6 +15,11 @@
             <form class="logout-form" action="/logout" method="POST">
                 <button class='logout-button' type='submit'>Log Out</button>
             </form>
+            <% } else { %>
+                <div class="unregistered-buttons">
+                    <button class='logout-button' type='submit'><a href="/login">Login</a></button>
+                    <button class='logout-button' type='submit'><a href="/register">Register</a></button>
+                </div>
             <% } %>
     </div>
 </nav>

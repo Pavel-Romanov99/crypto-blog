@@ -44,6 +44,7 @@ app.use(express.urlencoded({ extended: true }))
 //connect to the database and check for errors
 const Post = require('./models/postsModel')
 const User = require('./models/user')
+const Reply = require('./models/reply')
 
 mongoose.connect('mongodb://localhost:27017/crypto', {
     useNewUrlParser: true,
@@ -63,17 +64,8 @@ app.use((req, res, next) => {
     next()
 })
 
-//a function to check if the user is logged in
-const loggedIn = (req, res, next) => {
-    if (req.session.user_id == null) {
-        res.redirect('/login')
-    } else {
-        next();
-    }
-}
-
 //homepage route
-app.get('/', loggedIn, async (req, res) => {
+app.get('/', async (req, res) => {
 
     const id = req.session.user_id;
 
@@ -81,7 +73,6 @@ app.get('/', loggedIn, async (req, res) => {
     await rp(requestOptions).then(response => {
         for (var i = 0; i < response.data.length; i++) {
             coins.push(response.data[i].symbol)
-            // console.log(response.data[i].symbol)
         }
     }
     ).catch((err) => {
@@ -92,17 +83,19 @@ app.get('/', loggedIn, async (req, res) => {
 })
 
 //find all the post for the specific coin
-app.get('/posts/:coin', loggedIn, async (req, res) => {
+app.get('/posts/:coin', async (req, res) => {
     const id = req.session.user_id;
     const username = req.session.username;
     const posts = await Post.find({ coin: req.params.coin })
     const coinName = req.params.coin;
+    const replies = await Reply.find({});
+    console.log(replies)
 
-    res.render('posts', { posts, coinName, id, username })
+    res.render('posts', { posts, coinName, id, username, replies })
 })
 
 //get request for a new post for the specific coin
-app.get('/newpost/:coin', loggedIn, (req, res) => {
+app.get('/newpost/:coin', (req, res) => {
     const id = req.session.user_id;
 
     const coinName = req.params.coin;
@@ -110,13 +103,14 @@ app.get('/newpost/:coin', loggedIn, (req, res) => {
     res.render('newpost', { coinName, id })
 })
 
-app.post('/newpost/:coin', loggedIn, async (req, res) => {
+app.post('/newpost/:coin', async (req, res) => {
     //we take the name and description from the form
     const { description } = req.body;
     //take the username from the session
     const username = req.session.username;
+    const id = (new Date()).getTime();
     //we create a post object and save it 
-    const post = new Post({ name: username, description: description, coin: req.params.coin })
+    const post = new Post({id:id, name: username, description: description, coin: req.params.coin })
     await post.save()
     res.redirect(`/posts/${req.params.coin}`)
 })
@@ -236,14 +230,35 @@ app.post('/logout', (req, res) => {
 })
 
 //delete a comment routes
-app.post('/delete', async (req, res) => {
-    await Post.findOneAndDelete({ name: req.session.username })
+app.post('/delete/:id', async (req, res) => {
+    await Post.findOneAndDelete({ id: req.params.id })
         .then(() => {
             res.redirect(req.get('referer'));
         })
         .catch((err) => {
             console.log('error deleting comment', err)
         })
+})
+
+app.post('/delete/reply/:id', async (req, res) => {
+    await Reply.findOneAndDelete({ id: req.params.id })
+    .then(() => {
+        res.redirect(req.get('referer'));
+    })
+    .catch((err) => {
+        console.log('error deleting comment', err)
+    })
+})
+
+app.post('/reply/:coin/:id', async (req, res) => {
+    const {description} = req.body;
+    const username = req.session.username;
+    const replyId = (new Date()).getTime();
+
+    const reply = new Reply({id: replyId, name: username, description: description, replyTo: req.params.id})
+    await reply.save();
+    res.redirect(req.get('referer'));
+
 })
 
 app.listen(3000, () => {

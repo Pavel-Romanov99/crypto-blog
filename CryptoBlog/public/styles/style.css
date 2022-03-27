@@ -199,3 +199,8 @@ button a{
     justify-content: space-between;
     align-items: center;
 }
+
+.unregistered-buttons a{
+    text-decoration: none;
+    color: inherit;
+}

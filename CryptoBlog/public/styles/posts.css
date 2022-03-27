@@ -129,13 +129,11 @@ img{
 }
 
 .post{
-    background-color:rgb(234,234,234);
     width: 80%;
-    height: 180px;
-    padding: 1rem;
-    margin-bottom: 5%;
+    height: 80px;
+    height: auto;
     border-radius: 8px;
-    box-shadow: 10px 10px 5px grey;
+    margin-bottom: 8%;
 }
 
 .description{
@@ -143,9 +141,8 @@ img{
     width: 99%;
     height: 70%;
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 5px 5px 5px grey;
-
+    border-left: 2px solid rgb(234,234,234);
+    margin: 0;
 }
 
 .post-container{
@@ -154,13 +151,14 @@ img{
     flex-direction: column;
     color: black;
     align-items: center;
+    max-height: fit-content;
 }
 
 input{
-    border: 2px solid #5469d4;
-    border-radius: 8px;
     height: 50px;
     padding: 0;
+    border: none;
+    width: 100%;
 }
 
 input::placeholder{
@@ -185,16 +183,12 @@ input::placeholder{
 
 .container{
     margin-top: 5%;
+    height: auto;
     display: flex;
     flex-direction: row;
     padding-top: 0;
 }
 
-button {
-    margin-top: 30px;
-    width: 20%;
-    color: white
-}
 
 a{
     text-decoration: none;
@@ -234,6 +228,11 @@ button a{
         margin-left: 5px;
 }
 
+.logout-button a{
+    text-decoration: none;
+    color: white;
+}
+
 .nav-class{
     width: 100%;
     display: flex;
@@ -243,13 +242,12 @@ button a{
 
 .delete-button{
     width: 100px;
-    min-height: 30px;
-    border: none;
-    border-radius: 4px;
-    background-color: #5469d4;
-    color: white;
+    min-height: 15px;
+    color: black;
     font-size: 16px;
     margin: auto;
+    background-color: white;
+    border: none;
 }
 
 .buttons-container{
@@ -262,6 +260,7 @@ button a{
 .buttons{
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
 }
 
 .coin-class{
@@ -275,10 +274,37 @@ canvas{
     height: auto;
 }
 
+#modal-button{
+    width: 60%;
+    margin-bottom: 5%;
+    background-color: #5469d4;
+}
+
+#modal-button:hover{
+    background-color: white;
+    color: #5469d4;
+}
+
+.reply-button{
+    text-decoration: none;
+    border: none;
+    background-color: white;
+}
+
 .post-form{
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.delete-button{
+
 }

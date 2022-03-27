@@ -32,34 +32,137 @@
                         <% if(posts.length === 0) { %>
                             <h1 style="margin-top: 20% ;">There are currently no posts. Start the trend!</h1>
                         <% } %>
+                        
 
-                        <form class="post-form" action='/newpost/<%= coinName %>' method="POST">
-                            <input type="text-field" name="description" id="description" placeholder="Leave a comment! " rows="10">
+                        <% if(id) { %>
 
-                            <button type="sumbit" class="btn btn-dark" id="create-post">
-                                <a >Create a post</a>
-                            </button>
-                        </form>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" id="modal-button" data-toggle="modal" data-target="#exampleModalCenter">
+                            Make a Comment
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Leave a Comment</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <form class="post-form" action='/newpost/<%= coinName %>' method="POST">
+                                <div class="modal-body" style="width: 100%;">
+                                        <input type="text-field" name="description" id="description" placeholder="Leave a comment! " rows="10">
+                                </div>
+                                <div class="modal-footer" style="width: 100%;">
+                                    <button type="sumbit" class="btn btn-dark" id="create-post">
+                                        <a >Create a post</a>
+                                    </button>
+                                </div>
+                            </form>
+
+                            </div>
+                            </div>
+                        </div>
+                        <% } %>
 
                         <% for(var i=0; i < posts.length; i++) { %>
                             <div class="post">
-                                <h1>
-                                    <%= posts[i].name %> commented:
-                                </h1>
+                                <div class="user-info">
+                                    <h5 style="padding-left: 2%;">
+                                        <%= posts[i].name %>
+                                    </h5>
+
+                                </div>
+
                                 <div class="buttons-container">
                                     <p class="description">
                                         <%= posts[i].description %>
                                     </p>
                                     <% if(username===posts[i].name) { %>
                                         <div class="buttons">
-                                            <form class="logout-form" action="/delete" method="POST">
-                                                <button class='logout-button' type='submit'>Delete</button>
+                                            <form class="logout-form" action='/delete/<%= posts[i].id %>' method="POST">
+                                                <button class='delete-button' type='submit'>Delete</button>
                                             </form>
+                                            <button type="button" class="reply-button" data-toggle="modal" data-target="#<%= posts[i].id %>">
+                                                Reply
+                                            </button>
+                                            <div class="modal fade" id="<%= posts[i].id %>" tabindex="-1" role="dialog" aria-labelledby="reply" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Reply to comment</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <form class="post-form" action='/reply/<%= coinName %>/<%= posts[i].id %>' method="POST">
+                                                        <div class="modal-body" style="width: 100%;">
+                                                                <input type="text-field" name="description" id="description" placeholder="Reply to comment... " rows="10">
+                                                        </div>
+                                                        <div class="modal-footer" style="width: 100%;">
+                                                            <button type="sumbit" class="btn btn-dark" id="create-post">
+                                                                <a >Create a post</a>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                    
+                                                </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <% } %>
+                                    <% } %>
                                 </div>
+                                <% for(var j = 0; j < replies.length; j++){ %>
+                                    
+                                   <% if(replies[j].replyTo === posts[i].id) { %>
+
+                                    <div class="user-info">
+                                        <h6 style="padding-left: 5%;">
+                                            <%= posts[i].name %>
+                                        </h6>
+    
+                                    </div>
+
+                                    <div class="buttons-container" style="padding-left: 5%;">
+                                        <p class="description">
+                                            <%= replies[j].description %>
+                                        </p>
+                                        <% if(username===replies[j].name) { %>
+                                            <div class="buttons">
+                                                <form class="logout-form" action='/delete/reply/<%= replies[j].id %>' method="POST">
+                                                    <button class='delete-button' type='submit'>Delete</button>
+                                                </form>
+                                                <div class="modal fade" id="<%= replies[i].id %>" tabindex="-1" role="dialog" aria-labelledby="reply" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Reply to comment</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <form class="post-form" action='/reply/<%= coinName %>/<%= replies[j].id %>' method="POST">
+                                                            <div class="modal-body" style="width: 100%;">
+                                                                    <input type="text-field" name="description" id="description" placeholder="Reply to comment... " rows="10">
+                                                            </div>
+                                                            <div class="modal-footer" style="width: 100%;">
+                                                                <button type="sumbit" class="btn btn-dark" id="create-post">
+                                                                    <a >Create a post</a>
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                        
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                    <% } %>
+                                <% } %>
                             </div>
-                            <% } %>
+                        <% } %>
 
 
 
