@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg fixed-top">
     <div class="nav-class">
 
-        <a class="navbar-brand" href="/">CryptoBlog</a>
+    
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,9 +12,14 @@
         </div>
 
         <% if(id) { %>
-            <form class="logout-form" action="/logout" method="POST">
-                <button class='logout-button' type='submit'>Log Out</button>
-            </form>
+            <div class="nav-buttons">
+                <form class="logout-form" action="/logout" method="POST">
+                    <button class='logout-button' type='submit'>Log Out</button>
+                </form>
+                <button class='logout-button' type='submit'>Profile</button>
+                <button class='logout-button' type='submit'>Favourites</button>
+            </div>
+
             <% } else { %>
                 <div class="unregistered-buttons">
                     <button class='logout-button' type='submit'><a href="/login">Login</a></button>

@@ -1,5 +1,45 @@
 body{
     background-color: #ffffff;
+    font-family: 'Bebas Neue', cursive;
+    
+}
+
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.right-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 50vh;
+}
+
+.all-content{
+    display: flex;
+    flex-direction: row;
+}
+  
+#sidebar{
+    height: 100vh;
+    background-color: #5469d4;
+    border-top-right-radius: 8px;
+    display: flex;
+  }
+
+#sidebar h1{
+    align-self: center;
+}
+
+.nav-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 h1 {
@@ -9,9 +49,7 @@ h1 {
 h2 {
     font-size: 1.25em;
 }
-
-h1, 
-h2, 
+ 
 p {
     font-family: 'Red Hat Text', sans-serif;
     color: white;
@@ -25,7 +63,7 @@ p {
 }
 
 .cards {
-    width: 50%;
+    width: 100%;
     display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
@@ -133,7 +171,7 @@ img{
     height: 80px;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 8%;
+    margin-bottom: 5%;
 }
 
 .description{
@@ -187,6 +225,8 @@ input::placeholder{
     display: flex;
     flex-direction: row;
     padding-top: 0;
+    width: 100%;
+    justify-content: center;
 }
 
 
@@ -198,6 +238,7 @@ a{
     display: flex;
     flex-direction: row;
     margin-bottom: 5%;
+    width: 100%;
 }
 
 .post p,h1 {
@@ -275,7 +316,7 @@ canvas{
 }
 
 #modal-button{
-    width: 60%;
+    width: 80%;
     margin-bottom: 5%;
     background-color: #5469d4;
 }

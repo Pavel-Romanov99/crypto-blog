@@ -1,9 +1,17 @@
 body{
     background-color: #ffffff;
+    font-family: 'Bebas Neue', cursive;
+    height: 100vh;
 }
-
+ 
 h1 {
     font-size: 1.5em;
+}
+
+.nav-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 h2 {
@@ -13,8 +21,17 @@ h2 {
 h1, 
 h2, 
 p {
-    font-family: 'Red Hat Text', sans-serif;
     color: white;
+}
+
+.crypto-label{
+    width: 80%;
+    height: 5vh;
+    background-color: #5469d4;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
@@ -50,7 +67,7 @@ p {
     border-radius: 8px;
     box-shadow: 10px 10px 20px 1px #5469d4;
     border-color: white;
-    margin-top: 5%;
+    margin-top: 3%;
 
 }
 
@@ -86,13 +103,18 @@ img{
 }
 
 .jumbotron{
-   background-color:#5469d4;
+   background-image: url('https://wallpaper.dog/large/20525297.jpg');
+   height: 40vh;
+   background-size: cover;
+   background-position: center;
 }
 
 .jumbotron-container{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
+    height: 100%;
 }
 
 .jumbotron-container p {
@@ -184,7 +206,6 @@ button a{
 }
 
 .logout-button{
-        width: 100px;
         min-height: 30px;
         border: none;
         border-radius: 4px;
@@ -192,6 +213,8 @@ button a{
         color: white;
         font-size: 16px;
         margin: auto;
+        margin-left: 10px;
+        width: 100px;
 }
 .nav-class{
     width: 100%;
