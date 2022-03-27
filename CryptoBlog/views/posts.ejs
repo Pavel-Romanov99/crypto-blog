@@ -137,38 +137,38 @@
 
                     <div class="right-container">
                         <cards class="cards">
-                            <button type="button" class="btn btn-primary" id="modal-button" data-toggle="modal" data-target="#exampleModalCenter">
-                                Make a Comment
-                            </button>
-                        </cards>
-                        <% if(id) { %>
+                            <% if(id) { %>
     
-                            <!-- Button trigger modal -->
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Leave a Comment</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form class="post-form" action='/newpost/<%= coinName %>' method="POST">
-                                        <div class="modal-body" style="width: 100%;">
-                                                <input type="text-field" name="description" id="description" placeholder="Leave a comment! " rows="10">
-                                        </div>
-                                        <div class="modal-footer" style="width: 100%;">
-                                            <button type="sumbit" class="btn btn-dark" id="create-post">
-                                                <a >Create a post</a>
+                                <!-- Button trigger modal -->
+                                <button type="button" data-backdrop="false" class="btn btn-primary" id="modal-button" data-toggle="modal" data-target="#exampleModalCenter">
+                                    Make a Comment
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Leave a Comment</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                    </form>
+                                        <form class="post-form" action='/newpost/<%= coinName %>' method="POST">
+                                            <div class="modal-body" style="width: 100%;">
+                                                    <input type="text-field" name="description" id="description" placeholder="Leave a comment! " rows="10">
+                                            </div>
+                                            <div class="modal-footer" style="width: 100%;">
+                                                <button type="sumbit" class="btn btn-dark" id="create-post">
+                                                    <a >Create a post</a>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    </div>
                                 </div>
-                                </div>
-                            </div>
                             <% } %>
+                        </cards>
+                        
                     </div>
                 </div>
 
