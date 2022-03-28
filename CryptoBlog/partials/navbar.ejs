@@ -1,11 +1,5 @@
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="nav-class">
-
-    
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
             </div>
@@ -13,14 +7,15 @@
 
         <% if(id) { %>
             <div class="nav-buttons">
+                <button class='logout-button' type='submit'><a href="/">Home</a></button>
                 <form class="logout-form" action="/logout" method="POST">
                     <button class='logout-button' type='submit'>Log Out</button>
                 </form>
-                <button class='logout-button' type='submit'>Profile</button>
             </div>
 
             <% } else { %>
                 <div class="unregistered-buttons">
+                    <button class='logout-button' type='submit'><a href="/">Home</a></button>
                     <button class='logout-button' type='submit'><a href="/login">Login</a></button>
                     <button class='logout-button' type='submit'><a href="/register">Register</a></button>
                 </div>

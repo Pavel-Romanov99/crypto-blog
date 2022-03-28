@@ -4,7 +4,8 @@
     color: #1a1f36;
     box-sizing: border-box;
     word-wrap: break-word;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+    font-family: 'Bebas Neue', cursive;
+
   }
   body {
       min-height: 100%;
@@ -14,7 +15,8 @@
       letter-spacing: -1px;
   }
   a {
-    color: #a5019d;
+        color: #5469d4;
+
     text-decoration: unset;
   }
   .login-root {
@@ -66,7 +68,7 @@
       box-shadow: inset 0 0 0 2px #e3e8ee;
   }
   .box-background--blue {
-      background-color: #a5019d;
+      background-color: #5469d4;
   }
   .box-background--white {
     background-color: #ffffff; 
@@ -78,7 +80,7 @@
       background-color: #e3e8ee;
   }
   .box-background--cyan200 {
-      background-color: #a5019d;
+      background-color: #5469d4;
   }
   .padding-top--64 {
     padding-top: 64px;
@@ -214,7 +216,7 @@
       min-height: 44px;
       border: none;
       border-radius: 4px;
-      background-color: #a5019d;
+      background-color: #5469d4;
       color: white;
       font-size: 16px;
   }

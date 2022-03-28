@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Pavel Romanov",
@@ -11,6 +12,8 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "ejs-mate": "^3.0.0",
     "express": "^4.17.3",
@@ -20,5 +23,8 @@
     "mongoose": "^6.0.5",
     "request": "^2.88.2",
     "request-promise": "^4.2.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

@@ -8,11 +8,16 @@ h1 {
     font-size: 1.5em;
 }
 
+a{
+    color: white;
+}
+
 .nav-buttons{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
+
 
 h2 {
     font-size: 1.25em;
@@ -191,10 +196,6 @@ button {
     color: white
 }
 
-a{
-    text-decoration: none;
-}
-
 .contents-container {
     display: flex;
     flex-direction: row;
@@ -203,10 +204,6 @@ a{
 
 .post p,h1 {
     color: black
-}
-
-button a{
-    text-decoration: none;
 }
 
 #heading {
@@ -228,8 +225,18 @@ button a{
         margin-left: 10px;
         width: 100px;
 }
+
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 a{
+    color: #5469d4;
+}
+
 .nav-class{
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -238,4 +245,20 @@ button a{
 .unregistered-buttons a{
     text-decoration: none;
     color: inherit;
+}
+
+@media (max-width: 1200px) {
+    .main-cards-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .coin-class{
+        margin-bottom: 10%;
+    }
+    .site-description{
+        width: 80%;
+        text-align: center;
+    }
+
 }

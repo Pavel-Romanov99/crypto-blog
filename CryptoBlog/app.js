@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const rp = require('request-promise')
 
+
 const requestOptions = {
     method: 'GET',
     uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
@@ -48,7 +49,13 @@ const Reply = require('./models/reply')
 const Favourite = require('./models/favourites');
 const { allowedNodeEnvironmentFlags } = require('process');
 
-mongoose.connect('mongodb://localhost:27017/crypto', {
+
+
+require("dotenv").config();
+const dbURL = process.env.DB_URL || "mongodb://localhost:27017/crypto";
+
+
+mongoose.connect(dbURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -195,31 +202,38 @@ app.post('/login', async (req, res) => {
     var errors = []
 
     //we find a user from the database with the same username
-    const user = await User.findOne({ username: username })
-
-    //we check if the user exists
-    if (!user) {
-        errors.push({ msg: 'There is no user with that name' })
-        res.render('login', { errors })
-    }
-
-    //we compare the form password and db password
-    bcrypt.compare(password, user.password, (err, result) => {
+    User.findOne({ username: username }, (err, user) => {
         if (err) {
-            console.log('error comparing passwords', err)
-        } else {
-            //if the passwords match
-            if (result) {
-                req.session.user_id = user._id
-                req.session.username = user.username
-                res.redirect('/')
-            } else {
-                //if the passwords don't match
-                req.flash('error_msg', 'Incorrect password')
-                res.redirect('/login')
+            console.log("error finding user");
+        } else{
+            //we check if the user exists
+            if (!user) {
+                errors.push({ msg: 'There is no user with that name' })
+                res.render('login', { errors })
+            }else {
+                //we compare the form password and db password
+                bcrypt.compare(password, user.password, (err, result) => {
+                    if (err) {
+                        console.log('error comparing passwords', err)
+                    } else {
+                        //if the passwords match
+                        if (result) {
+                            req.session.user_id = user._id
+                            req.session.username = user.username
+                            res.redirect('/')
+                        } else {
+                            //if the passwords don't match
+                            req.flash('error_msg', 'Incorrect password')
+                            res.redirect('/login')
+                        }
+                    }
+                })
             }
         }
     })
+
+
+
 })
 
 //logout route and logic
@@ -285,7 +299,8 @@ app.post('/favourite/delete/:coin', async (req, res) => {
     })
 })
 
+const port = process.env.PORT || 3000;
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000...')
-})
+app.listen(port, () => {
+  console.log(`Listening on port ${port}...`);
+});
