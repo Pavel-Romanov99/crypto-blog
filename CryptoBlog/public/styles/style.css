@@ -24,6 +24,18 @@ p {
     color: white;
 }
 
+.logo-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo{
+    width: 75px;
+    height: auto;
+}
+
 .crypto-label{
     width: 80%;
     height: 5vh;
@@ -40,7 +52,7 @@ p {
     align-items: center;
 }
 
-.cards {
+.main-cards-container {
     width: 90%;
     display: inline-flex;
     flex-direction: row;

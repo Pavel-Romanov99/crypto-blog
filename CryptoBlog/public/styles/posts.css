@@ -4,17 +4,24 @@ body{
     
 }
 
+.main-cards-container{
+    width: 100%;
+}
+
 .main-container{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-left: 15%;
 }
 
 .right-container{
     width: 50%;
     height: 100%;
 }
+
+
 
 .all-content{
     display: flex;
@@ -73,17 +80,40 @@ p {
 
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+}
+
+.group{
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    justify-content: center;
+}
+
+.link-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+}
+
+.link-items img{
+    width: 50px;
+}
+
+
+.side-content{
+    margin-top: 5%;
 }
 
 .cards {
     width: 100%;
     display: inline-flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    flex-wrap: wrap;
     padding-top: 50px;
     padding-bottom: 30px;
     color: black;
@@ -161,6 +191,28 @@ img{
     flex-direction: column;
     align-items: center;
 }
+
+#favourites-button{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#favourites-button:hover{
+    background-color: white;
+    color: green;
+}
+
+#remove-favourites-button{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#remove-favourites-button:hover{
+    background-color: white;
+    color: red;
+}
+
+
 
 #form{
     background-color: rgb(234,234,234);
@@ -288,9 +340,19 @@ button a{
         margin-left: 5px;
 }
 
+.logout-button:hover{
+    background-color: white;
+    color: #5469d4;
+    border: 1px solid #5469d4;
+}
+
 .logout-button a{
     text-decoration: none;
     color: white;
+}
+
+.logout-button a:hover{
+    color: #5469d4;
 }
 
 .nav-class{
@@ -363,8 +425,4 @@ canvas{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-.delete-button{
-
 }

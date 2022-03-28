@@ -45,6 +45,8 @@ app.use(express.urlencoded({ extended: true }))
 const Post = require('./models/postsModel')
 const User = require('./models/user')
 const Reply = require('./models/reply')
+const Favourite = require('./models/favourites');
+const { allowedNodeEnvironmentFlags } = require('process');
 
 mongoose.connect('mongodb://localhost:27017/crypto', {
     useNewUrlParser: true,
@@ -89,9 +91,9 @@ app.get('/posts/:coin', async (req, res) => {
     const posts = await Post.find({ coin: req.params.coin })
     const coinName = req.params.coin;
     const replies = await Reply.find({});
-    console.log(replies)
-
-    res.render('posts', { posts, coinName, id, username, replies })
+    const favourite = await Favourite.find({name: username, coin: coinName})
+    const favourites = await Favourite.find({name: username})
+    res.render('posts', { posts, coinName, id, username, replies, favourite, favourites })
 })
 
 //get request for a new post for the specific coin
@@ -260,6 +262,29 @@ app.post('/reply/:coin/:id', async (req, res) => {
     res.redirect(req.get('referer'));
 
 })
+
+app.post('/favourite/:coin', async (req, res) => {
+    const coin = req.params.coin;
+    const username = req.session.username;
+
+    const fav = new Favourite({name: username, coin: coin})
+    await fav.save();
+    res.redirect(req.get('referer'));
+})
+
+app.post('/favourite/delete/:coin', async (req, res) => {
+    const coin = req.params.coin;
+    const username = req.session.username;
+
+    Favourite.findOneAndDelete({name: username, coin: coin})
+    .then(() => {
+        res.redirect(req.get('referer'));
+    })
+    .catch((err) => {
+        console.log('error deleting favourite', err)
+    })
+})
+
 
 app.listen(3000, () => {
     console.log('Listening on port 3000...')

@@ -3,7 +3,7 @@ let fullnames = []
 
 //create a card for a new coin
 export let addCard = function (coin, fullname) {
-    const cards = document.getElementsByClassName('cards')[0]
+    const cards = document.getElementsByClassName('main-cards-container')[0]
 
     const coinContainer = document.createElement('coin');
     coinContainer.classList.add('coin-class')

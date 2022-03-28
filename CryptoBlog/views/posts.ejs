@@ -137,36 +137,61 @@
 
                     <div class="right-container">
                         <cards class="cards">
-                            <% if(id) { %>
-    
-                                <!-- Button trigger modal -->
-                                <button type="button" data-backdrop="false" class="btn btn-primary" id="modal-button" data-toggle="modal" data-target="#exampleModalCenter">
-                                    Make a Comment
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Leave a Comment</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form class="post-form" action='/newpost/<%= coinName %>' method="POST">
-                                            <div class="modal-body" style="width: 100%;">
-                                                    <input type="text-field" name="description" id="description" placeholder="Leave a comment! " rows="10">
-                                            </div>
-                                            <div class="modal-footer" style="width: 100%;">
-                                                <button type="sumbit" class="btn btn-dark" id="create-post">
-                                                    <a >Create a post</a>
+
+                            <div class="main-cards-container">
+                                <% if(id) { %>
+                                
+                
+                                    <% if(favourite.length > 0){ %>
+                                        <button id ="remove-favourites-button" class="btn btn-danger">Remove from Favourites</button>
+                                    <% } else { %>
+                                        <button id="favourites-button" class="btn btn-success">Add to favourites</button>
+                                    <% } %>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" data-backdrop="false" class="btn btn-primary" id="modal-button" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Make a Comment
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Leave a Comment</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                        </form>
+                                            <form class="post-form" action='/newpost/<%= coinName %>' method="POST">
+                                                <div class="modal-body" style="width: 100%;">
+                                                        <input type="text-field" name="description" id="description" placeholder="Leave a comment! " rows="10">
+                                                </div>
+                                                <div class="modal-footer" style="width: 100%;">
+                                                    <button type="sumbit" class="btn btn-dark" id="create-post">
+                                                        <a >Create a post</a>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        </div>
                                     </div>
-                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="side-content">
+                                <div class="group">
+                                    <% for(var i = 0; i < favourites.length; i++){ 
+                                        let name = favourites[i].coin.split('-')[0].toLowerCase();
+                                        let fullName = favourites[i].coin.split('-')[1].toLowerCase();
+                                        %>
+            
+                                                <div class="link-items" id="<%= favourites[i].coin %>-fav-icon">
+                                                    <a href="/posts/<%= favourites[i].coin %>">
+                                                        <img src="https://cryptologos.cc/logos/<%= fullName %>-<%= name %>-logo.svg?v=013" alt="">
+                                                    </a>
+                                                    <label for=""><%= name %></label>
+                                                </div>
+                                    <% } %>
                                 </div>
-                            <% } %>
+                            </div>
                         </cards>
                         
                     </div>
@@ -174,9 +199,7 @@
 
             </div>
         </main>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
@@ -185,6 +208,7 @@
             crossorigin="anonymous"></script>
         <script type="module" src="../public/js/getCoin.js"></script>
         <script type="module" src="../public/js/sidebar.js"></script>
+        <script type="module" src="../public/js/addFavourites.js"></script>
     </div>
 
 </body>
