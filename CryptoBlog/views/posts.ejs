@@ -63,6 +63,13 @@
                                         </div>
                                         </div>
                                     </div>
+                                <% } else { %>
+                                    <div class="inactive-buttons">
+                                        <button type="button" disabled data-backdrop="false" class="btn btn-primary" id="modal-button" style="margin-bottom: 3%" data-toggle="modal" data-target="#exampleModalCenter">
+                                            Register to leave a comment
+                                        </button>
+                                        <button id ="remove-favourites-button" class="btn btn-danger" disabled>Register to add to favourites</button>
+                                    </div>
                                 <% } %>
                             </div>
                             <div class="side-content">
@@ -80,6 +87,26 @@
                                                     </a>
                                                     <label for=""><%= name %></label>
                                                 </div>
+                                    <% } %>
+                                    <% if(!id) { %>
+                                            <div class="link-items" id="DOGE-dogecoin-fav-icon">
+                                                <a href="/posts/DOGE-dogecoin">
+                                                    <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.svg?v=013" alt="">
+                                                </a>
+                                                <label for="">doge</label>
+                                            </div>
+                                            <div class="link-items" id="BTC-bitcoin-fav-icon">
+                                                <a href="/posts/BTC-bitcoin">
+                                                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=013" alt="">
+                                                </a>
+                                                <label for="">btc</label>
+                                            </div>
+                                            <div class="link-items" id="XRP-xrp-fav-icon">
+                                                <a href="/posts/XRP-xrp">
+                                                    <img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=013">
+                                                </a>
+                                                <label>xrp</label>
+                                            </div>
                                     <% } %>
                                 </div>
                             </div>
@@ -149,17 +176,16 @@
                                     
                                    <% if(replies[j].replyTo === posts[i].id) { %>
 
-                                    <div class="user-info">
-                                        <h6 style="padding-left: 5%;">
-                                            <%= replies[j].name %>
-                                        </h6>
-    
-                                    </div>
+                                        <div class="user-info">
+                                            <h6 style="padding-left: 5%;">
+                                                <%= replies[j].name %>
+                                            </h6>
+                                        </div>
 
-                                    <div class="buttons-container" style="padding-left: 5%;">
-                                        <p class="description">
-                                            <%= replies[j].description %>
-                                        </p>
+                                        <div class="buttons-container" style="padding-left: 5%;">
+                                            <p class="description">
+                                                <%= replies[j].description %>
+                                            </p>
                                             <div class="buttons">
                                                 <% if(username===replies[j].name) { %>
                                                     <form class="logout-form" action='/delete/reply/<%= replies[j].id %>' method="POST">
@@ -190,7 +216,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
+                                        </div>
                                     <% } %>
                                 <% } %>
                             </div>

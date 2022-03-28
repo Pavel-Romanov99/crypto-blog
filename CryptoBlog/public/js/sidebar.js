@@ -8,7 +8,7 @@
   })()
   
 const url = document.URL;
-const path = url.split('3000')[1];
+const path = window.location.pathname;
 
 const links = document.querySelectorAll('#sidebar a');
 

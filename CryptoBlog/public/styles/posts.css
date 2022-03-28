@@ -48,6 +48,10 @@ body{
     color: white;
 }
 
+.inactive-buttons{
+    margin: 2%;
+}
+
 .label-container{
     display: flex;
     flex-direction: column;
