@@ -1,5 +1,72 @@
 body{
     background-color: #ffffff;
+    font-family: 'Bebas Neue', cursive;
+    
+}
+
+.main-cards-container{
+    width: 100%;
+}
+
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.right-container{
+    width: 50%;
+    height: 100%;
+    margin-right: 10%;
+}
+
+
+
+.all-content{
+    display: flex;
+    flex-direction: row;
+}
+
+.logo-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+#sidebar{
+    height: 100vh;
+    background-color: #5469d4;
+    border-top-right-radius: 8px;
+    display: flex;
+  }
+
+#sidebar h1{
+    font-size: 50px;
+    color: white;
+}
+
+.inactive-buttons{
+    margin: 2%;
+}
+
+.label-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-item a{
+    font-size: 30px;
+}
+
+.nav-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 h1 {
@@ -9,9 +76,7 @@ h1 {
 h2 {
     font-size: 1.25em;
 }
-
-h1, 
-h2, 
+ 
 p {
     font-family: 'Red Hat Text', sans-serif;
     color: white;
@@ -19,21 +84,52 @@ p {
 
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
 }
 
-.cards {
-    width: 50%;
-    display: inline-flex;
+
+.group{
+    display: flex;
     flex-direction: row;
+    height: 100px;
+    justify-content: center;
+}
+
+.link-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+}
+
+.link-items img{
+    width: 50px;
+}
+
+
+.side-content{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
     justify-content: space-between;
-    flex-wrap: wrap;
-    padding-top: 0;
+    padding-top: 50px;
     padding-bottom: 30px;
     color: black;
+    position: sticky;
+    top: 0;
 }
+
 
 .asset-price{
     color: #5469d4;
@@ -105,6 +201,28 @@ img{
     align-items: center;
 }
 
+#favourites-button{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#favourites-button:hover{
+    background-color: white;
+    color: green;
+}
+
+#remove-favourites-button{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#remove-favourites-button:hover{
+    background-color: white;
+    color: red;
+}
+
+
+
 #form{
     background-color: rgb(234,234,234);
     display: flex;
@@ -133,7 +251,7 @@ img{
     height: 80px;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 8%;
+    margin-bottom: 5%;
 }
 
 .description{
@@ -187,6 +305,8 @@ input::placeholder{
     display: flex;
     flex-direction: row;
     padding-top: 0;
+    width: 100%;
+    justify-content: center;
 }
 
 
@@ -198,6 +318,7 @@ a{
     display: flex;
     flex-direction: row;
     margin-bottom: 5%;
+    width: 100%;
 }
 
 .post p,h1 {
@@ -228,15 +349,25 @@ button a{
         margin-left: 5px;
 }
 
+.logout-button:hover{
+    background-color: white;
+    color: #5469d4;
+    border: 1px solid #5469d4;
+}
+
 .logout-button a{
     text-decoration: none;
     color: white;
 }
 
+.logout-button a:hover{
+    color: #5469d4;
+}
+
 .nav-class{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -275,7 +406,7 @@ canvas{
 }
 
 #modal-button{
-    width: 60%;
+    width: 100%;
     margin-bottom: 5%;
     background-color: #5469d4;
 }
@@ -305,6 +436,36 @@ canvas{
     justify-content: space-between;
 }
 
-.delete-button{
 
+@media (max-width: 1200px) {
+    .main-container{
+        width: 100%;
+    }
+    .contents-container{
+        width: 100%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .main-container{
+        width: 100%;
+    }
+    .contents-container{
+        width: 100%;
+    }
+    .container{
+        margin-top: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .post-container{
+        width: 100%;
+    }
+    .right-container{
+        width: 100%;
+        align-self: flex-start;
+        display:table-header-group;
+    }
 }

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Sidebar</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      #sidebar{
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      @media (max-width: 1200px) {
+        #sidebar{
+          display: none;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="sidebar.css" rel="stylesheet">
+  </head>
+  <body>
+
+<main>
+  <div class="flex-shrink-0 p-3 text-white fixed-top" id="sidebar">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <div class="logo-container">
+        <h1>CryptoBlog</h1>
+        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Gold_Bitcoin.svg/2048px-Gold_Bitcoin.svg.png' alt="">
+      </div>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="/posts/BTC-bitcoin" class="nav-link text-white" aria-current="page">
+          Bitcoin
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/posts/ETH-ethereum" class="nav-link text-white">
+          Ethereum
+        </a>
+        
+      </li>
+      <li class="nav-item">
+        <a href="/posts/XRP-xrp" class="nav-link text-white">
+          XRP
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/posts/ADA-cardano" class="nav-link text-white">
+          Cardano
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/posts/ATOM-cosmos" class="nav-link text-white">
+          Cosmos
+        </a>
+      </li>
+      <li  class="nav-item">
+        <a href="/posts/DOGE-dogecoin" class="nav-link text-white">
+          Dogecoin
+        </a>
+      </li>
+    </ul>
+    <hr>
+
+    <div class="label-container">
+      <label>@Copyright 2022 by Pavel Romanov</label>
+      <label>All rights reserved</label>
+    </div>
+
+  </div>
+
+  <div class="b-example-divider"></div>
+
+</main>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      <script src="sidebars.js"></script>
+  </body>
+</html>
