@@ -1,245 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="../public/styles/posts.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
     <title>Post</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <%- include('../partials/navbar.ejs') %>
 
     <div class="all-content">
+      <main class="main-container">
         <%- include('../partials/sidebar.ejs') %>
 
-        <main class="main-container">
-            <div class="contents-container">
-                <div class="container">
-                    <div class="right-container">
-                        <cards class="cards">
-
-                            <div class="main-cards-container">
-                                <% if(id) { %>
-                                
-                
-                                    <% if(favourite.length > 0){ %>
-                                        <button id ="remove-favourites-button" class="btn btn-danger">Remove from Favourites</button>
-                                    <% } else { %>
-                                        <button id="favourites-button" class="btn btn-success">Add to favourites</button>
-                                    <% } %>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" data-backdrop="false" class="btn btn-primary" id="modal-button" data-toggle="modal" data-target="#exampleModalCenter">
-                                        Make a Comment
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Leave a Comment</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form class="post-form" action='/newpost/<%= coinName %>' method="POST">
-                                                <div class="modal-body" style="width: 100%;">
-                                                        <input type="text-field" name="description" id="description" placeholder="Leave a comment! " rows="10">
-                                                </div>
-                                                <div class="modal-footer" style="width: 100%;">
-                                                    <button type="sumbit" class="btn btn-dark" id="create-post">
-                                                        <a >Create a post</a>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        </div>
-                                    </div>
-                                <% } else { %>
-                                    <div class="inactive-buttons">
-                                        <button type="button" disabled data-backdrop="false" class="btn btn-primary" id="modal-button" style="margin-bottom: 3%" data-toggle="modal" data-target="#exampleModalCenter">
-                                            Register to leave a comment
-                                        </button>
-                                        <button id ="remove-favourites-button" class="btn btn-danger" disabled>Register to add to favourites</button>
-                                    </div>
-                                <% } %>
-                            </div>
-                            <div class="side-content">
-                                <h1>Favourite Coins</h1>
-
-                                <div class="group">
-                                    <% for(var i = 0; i < favourites.length; i++){ 
-                                        let name = favourites[i].coin.split('-')[0].toLowerCase();
-                                        let fullName = favourites[i].coin.split('-')[1].toLowerCase();
-                                        %>
-            
-                                                <div class="link-items" id="<%= favourites[i].coin %>-fav-icon">
-                                                    <a href="/posts/<%= favourites[i].coin %>">
-                                                        <img src="https://cryptologos.cc/logos/<%= fullName %>-<%= name %>-logo.svg?v=013" alt="">
-                                                    </a>
-                                                    <label for=""><%= name %></label>
-                                                </div>
-                                    <% } %>
-                                    <% if(!id) { %>
-                                            <div class="link-items" id="DOGE-dogecoin-fav-icon">
-                                                <a href="/posts/DOGE-dogecoin">
-                                                    <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.svg?v=013" alt="">
-                                                </a>
-                                                <label for="">doge</label>
-                                            </div>
-                                            <div class="link-items" id="BTC-bitcoin-fav-icon">
-                                                <a href="/posts/BTC-bitcoin">
-                                                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=013" alt="">
-                                                </a>
-                                                <label for="">btc</label>
-                                            </div>
-                                            <div class="link-items" id="XRP-xrp-fav-icon">
-                                                <a href="/posts/XRP-xrp">
-                                                    <img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=013">
-                                                </a>
-                                                <label>xrp</label>
-                                            </div>
-                                    <% } %>
-                                </div>
-                            </div>
-                        </cards>
-                        
+        <div class="contents-container">
+          <div class="container">
+            <div class="right-container">
+              <cards class="cards">
+                <div class="main-cards-container">
+                  <% if(id) { %> <% if(favourite.length > 0){ %>
+                  <button id="remove-favourites-button" class="btn btn-danger">
+                    Remove from Favourites
+                  </button>
+                  <% } else { %>
+                  <button id="favourites-button" class="btn btn-success">
+                    Add to favourites
+                  </button>
+                  <% } %>
+                  <!-- Button trigger modal -->
+                  <button
+                    type="button"
+                    data-backdrop="false"
+                    class="btn btn-primary"
+                    id="modal-button"
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter"
+                  >
+                    Make a Comment
+                  </button>
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="exampleModalCenter"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalCenterTitle"
+                    aria-hidden="true"
+                  >
+                    <div
+                      class="modal-dialog modal-dialog-centered"
+                      role="document"
+                    >
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">
+                            Leave a Comment
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form
+                          class="post-form"
+                          action="/newpost/<%= coinName %>"
+                          method="POST"
+                        >
+                          <div class="modal-body" style="width: 100%">
+                            <input
+                              type="text-field"
+                              name="description"
+                              id="description"
+                              placeholder="Leave a comment! "
+                              rows="10"
+                            />
+                          </div>
+                          <div class="modal-footer" style="width: 100%">
+                            <button
+                              type="sumbit"
+                              class="btn btn-dark"
+                              id="create-post"
+                            >
+                              <a>Create a post</a>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                    <div class="post-container">
+                  </div>
+                  <% } else { %>
+                  <div class="inactive-buttons">
+                    <button
+                      type="button"
+                      disabled
+                      data-backdrop="false"
+                      class="btn btn-primary"
+                      id="modal-button"
+                      style="margin-bottom: 3%"
+                      data-toggle="modal"
+                      data-target="#exampleModalCenter"
+                    >
+                      Register to leave a comment
+                    </button>
+                    <button
+                      id="remove-favourites-button"
+                      class="btn btn-danger"
+                      disabled
+                    >
+                      Register to add to favourites
+                    </button>
+                  </div>
+                  <% } %>
+                </div>
+                <div class="side-content">
+                  <h1>Favourite Coins</h1>
 
-                        <% if(posts.length === 0) { %>
-                            <h1 style="margin-top: 20% ;">There are currently no posts. Start the trend!</h1>
-                        <% } else { %>
-                            <h1>Comments: </h1>
-                        <% } %>
+                  <div class="group">
+                    <% for(var i = 0; i < favourites.length; i++){ let name =
+                    favourites[i].coin.split('-')[0].toLowerCase(); let fullName
+                    = favourites[i].coin.split('-')[1].toLowerCase(); %>
 
-                       
-                        <% for(var i=0; i < posts.length; i++) { %>
-                            <div class="post">
-                                <div class="user-info">
-                                    <h5 style="padding-left: 2%;">
-                                        <%= posts[i].name %>
-                                    </h5>
-
-                                </div>
-
-                                <div class="buttons-container">
-                                    <p class="description">
-                                        <%= posts[i].description %>
-                                    </p>
-                                        <div class="buttons">
-                                            <% if(username===posts[i].name) { %>
-                                                <form class="logout-form" action='/delete/<%= posts[i].id %>' method="POST">
-                                                    <button class='delete-button' type='submit'>Delete</button>
-                                                </form>
-                                            <% } %>
-
-                                            <% if(id) { %>
-                                                <button type="button" class="reply-button" data-toggle="modal" data-target="#<%= posts[i].id %>">
-                                                    Reply
-                                                </button>
-                                            <% } %>
-                                            <div class="modal fade" id="<%= posts[i].id %>" tabindex="-1" role="dialog" aria-labelledby="reply" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Reply to comment</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    </div>
-                                                    <form class="post-form" action='/reply/<%= coinName %>/<%= posts[i].id %>' method="POST">
-                                                        <div class="modal-body" style="width: 100%;">
-                                                                <input type="text-field" name="description" id="description" placeholder="Reply to comment... " rows="10">
-                                                        </div>
-                                                        <div class="modal-footer" style="width: 100%;">
-                                                            <button type="sumbit" class="btn btn-dark" id="create-post">
-                                                                <a >Create a post</a>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                    
-                                                </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                <% for(var j = 0; j < replies.length; j++){ %>
-                                    
-                                   <% if(replies[j].replyTo === posts[i].id) { %>
-
-                                        <div class="user-info">
-                                            <h6 style="padding-left: 5%;">
-                                                <%= replies[j].name %>
-                                            </h6>
-                                        </div>
-
-                                        <div class="buttons-container" style="padding-left: 5%;">
-                                            <p class="description">
-                                                <%= replies[j].description %>
-                                            </p>
-                                            <div class="buttons">
-                                                <% if(username===replies[j].name) { %>
-                                                    <form class="logout-form" action='/delete/reply/<%= replies[j].id %>' method="POST">
-                                                        <button class='delete-button' type='submit'>Delete</button>
-                                                    </form>
-                                                <% } %>
-                                                <div class="modal fade" id="<%= replies[i].id %>" tabindex="-1" role="dialog" aria-labelledby="reply" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">Reply to comment</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        </div>
-                                                        <form class="post-form" action='/reply/<%= coinName %>/<%= replies[j].id %>' method="POST">
-                                                            <div class="modal-body" style="width: 100%;">
-                                                                    <input type="text-field" name="description" id="description" placeholder="Reply to comment... " rows="10">
-                                                            </div>
-                                                            <div class="modal-footer" style="width: 100%;">
-                                                                <button type="sumbit" class="btn btn-dark" id="create-post">
-                                                                    <a >Create a post</a>
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                        
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <% } %>
-                                <% } %>
-                            </div>
-                        <% } %>
+                    <div
+                      class="link-items"
+                      id="<%= favourites[i].coin %>-fav-icon"
+                    >
+                      <a href="/posts/<%= favourites[i].coin %>">
+                        <img
+                          src="https://cryptologos.cc/logos/<%= fullName %>-<%= name %>-logo.svg?v=013"
+                          alt=""
+                        />
+                      </a>
+                      <label for=""><%= name %></label>
                     </div>
-
-                    
+                    <% } %> <% if(!id) { %>
+                    <div class="link-items" id="DOGE-dogecoin-fav-icon">
+                      <a href="/posts/DOGE-dogecoin">
+                        <img
+                          src="https://cryptologos.cc/logos/dogecoin-doge-logo.svg?v=013"
+                          alt=""
+                        />
+                      </a>
+                      <label for="">doge</label>
+                    </div>
+                    <div class="link-items" id="BTC-bitcoin-fav-icon">
+                      <a href="/posts/BTC-bitcoin">
+                        <img
+                          src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=013"
+                          alt=""
+                        />
+                      </a>
+                      <label for="">btc</label>
+                    </div>
+                    <div class="link-items" id="XRP-xrp-fav-icon">
+                      <a href="/posts/XRP-xrp">
+                        <img
+                          src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=013"
+                        />
+                      </a>
+                      <label>xrp</label>
+                    </div>
+                    <% } %>
+                  </div>
+                </div>
+              </cards>
+            </div>
+            <div class="post-container">
+              <% if(posts.length === 0) { %>
+              <h1 style="margin-top: 20%">
+                There are currently no posts. Start the trend!
+              </h1>
+              <% } else { %>
+              <h1>Comments:</h1>
+              <% } %> <% for(var i=0; i < posts.length; i++) { %>
+              <div class="post">
+                <div class="user-info">
+                  <h5 style="padding-left: 2%"><%= posts[i].name %></h5>
                 </div>
 
+                <div class="buttons-container">
+                  <p class="description"><%= posts[i].description %></p>
+                  <div class="buttons">
+                    <% if(username===posts[i].name) { %>
+                    <form
+                      class="logout-form"
+                      action="/delete/<%= posts[i].id %>"
+                      method="POST"
+                    >
+                      <button class="delete-button" type="submit">
+                        Delete
+                      </button>
+                    </form>
+                    <% } %> <% if(id) { %>
+                    <button
+                      type="button"
+                      class="reply-button"
+                      data-toggle="modal"
+                      data-target="#<%= posts[i].id %>"
+                    >
+                      Reply
+                    </button>
+                    <% } %>
+                    <div
+                      class="modal fade"
+                      id="<%= posts[i].id %>"
+                      tabindex="-1"
+                      role="dialog"
+                      aria-labelledby="reply"
+                      aria-hidden="true"
+                    >
+                      <div
+                        class="modal-dialog modal-dialog-centered"
+                        role="document"
+                      >
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">
+                              Reply to comment
+                            </h5>
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form
+                            class="post-form"
+                            action="/reply/<%= coinName %>/<%= posts[i].id %>"
+                            method="POST"
+                          >
+                            <div class="modal-body" style="width: 100%">
+                              <input
+                                type="text-field"
+                                name="description"
+                                id="description"
+                                placeholder="Reply to comment... "
+                                rows="10"
+                              />
+                            </div>
+                            <div class="modal-footer" style="width: 100%">
+                              <button
+                                type="sumbit"
+                                class="btn btn-dark"
+                                id="create-post"
+                              >
+                                <a>Create a post</a>
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% for(var j = 0; j < replies.length; j++){ %> <%
+                if(replies[j].replyTo === posts[i].id) { %>
+
+                <div class="user-info">
+                  <h6 style="padding-left: 5%"><%= replies[j].name %></h6>
+                </div>
+
+                <div class="buttons-container" style="padding-left: 5%">
+                  <p class="description"><%= replies[j].description %></p>
+                  <div class="buttons">
+                    <% if(username===replies[j].name) { %>
+                    <form
+                      class="logout-form"
+                      action="/delete/reply/<%= replies[j].id %>"
+                      method="POST"
+                    >
+                      <button class="delete-button" type="submit">
+                        Delete
+                      </button>
+                    </form>
+                    <% } %>
+                    <div
+                      class="modal fade"
+                      id="<%= replies[i].id %>"
+                      tabindex="-1"
+                      role="dialog"
+                      aria-labelledby="reply"
+                      aria-hidden="true"
+                    >
+                      <div
+                        class="modal-dialog modal-dialog-centered"
+                        role="document"
+                      >
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">
+                              Reply to comment
+                            </h5>
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form
+                            class="post-form"
+                            action="/reply/<%= coinName %>/<%= replies[j].id %>"
+                            method="POST"
+                          >
+                            <div class="modal-body" style="width: 100%">
+                              <input
+                                type="text-field"
+                                name="description"
+                                id="description"
+                                placeholder="Reply to comment... "
+                                rows="10"
+                              />
+                            </div>
+                            <div class="modal-footer" style="width: 100%">
+                              <button
+                                type="sumbit"
+                                class="btn btn-dark"
+                                id="create-post"
+                              >
+                                <a>Create a post</a>
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %> <% } %>
+              </div>
+              <% } %>
             </div>
-        </main>
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-        <script type="module" src="../public/js/getCoin.js"></script>
-        <script type="module" src="../public/js/sidebar.js"></script>
-        <script type="module" src="../public/js/addFavourites.js"></script>
+          </div>
+        </div>
+      </main>
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+      ></script>
+      <script type="module" src="../public/js/getCoin.js"></script>
+      <script type="module" src="../public/js/sidebar.js"></script>
+      <script type="module" src="../public/js/addFavourites.js"></script>
     </div>
-
-</body>
-
+  </body>
 </html>
